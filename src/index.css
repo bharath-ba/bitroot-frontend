@@ -1,13 +1,231 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+$black: #222;
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+html {
+  font-size: 16px;
+}
+
+.gallery-container {
+  padding: 0.9375rem 0;
+}
+
+.gallery-grid div {
+  position: relative;
+  cursor: pointer;
+  &:before,
+  &:after {
+    transition: 0.3s opacity ease;
+    opacity: 0;
+  }
+  &:after {
+    content: "\02194";
+    font-size: 80px;
+    position: absolute;
+    transform: translate3d(-50%, -50%, 0) rotate(-45deg);
+    color: #fff;
+    left: 50%;
+    top: 50%;
+    display: block;
+  }
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 4px;
+    left: 0;
+    right: 0;
+    background: rgba(#222, 0.5);
+    display: block;
+  }
+  &:hover {
+    &:before,
+    &:after {
+      opacity: 1;
+      transition: 0.3s opacity ease;
+    }
+  }
+}
+.modal {
+  position: fixed;
+  z-index: 999;
+  width: 50%;
+  max-width: 800px;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  @include bp(x-small) {
+    width: 95%;
+  }
+  @include bp(small) {
+    width: 80%;
+  }
+  @include bp(large) {
+    width: 60%;
+  }
+  img {
+    width: 100%;
+    border: 5px solid #fff;
+  }
+}
+
+.modal-overlay {
+  position: fixed;
+  z-index: 1;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  top: 0;
+  left: 0;
+}
+.modal-body a {
+  position: absolute;
+  display: inline;
+  color: $black;
+  text-decoration: none;
+  line-height: 36px;
+  font-size: 30px;
+  font-weight: lighter;
+  background: #fff;
+  border-radius: 5px;
+  height: 40px;
+  width: 40px;
+  text-align: center;
+}
+.modal-body .modal-close {
+  right: 0;
+  top: 0;
+  border-radius: 0 0 0 5px;
+}
+.modal-body .modal-next,
+.modal-body .modal-prev {
+  right: 0;
+  top: calc(50% - 25px);
+  border-radius: 5px 0 0 5px;
+  height: 50px;
+  line-height: 40px;
+  font-size: 60px;
+}
+.modal-body .modal-prev {
+  left: 0;
+  right: auto;
+  border-radius: 0 5px 5px 0;
+}
+.modal-body {
+  position: relative;
+}
+
+body {
+  width: 60%;
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: "Roboto", sans-serif;
+}
+
+.gallery-grid {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.image-container {
+  margin-top: 50px;
+  width: 45%;
+  height: 450px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 500px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  line-height: 22px;
+  letter-spacing: 0.8px;
+  border-radius: 5px;
+}
+
+.image-element img {
+  width: 100%;
+  height: 220px;
+}
+.image-footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+  font-size: 12px;
+}
+.image-header {
+  font-weight: bold;
+  font-size: 22px;
+  padding: 5px;
+}
+.image-text {
+  padding: 5px;
+  font-size: 14px;
+}
+.dot {
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  display: flex;
+}
+.yellow,
+.blue {
+  width: 15px;
+  height: 15px;
+  z-index: 22;
+  background-color: #f8c112;
+  border-radius: 50%;
+  margin-left: 10px;
+}
+
+.blue {
+  background-color: #4fbdd4;
+}
+
+.modal-container {
+  background-color: #fff;
+}
+
+.modal-body img {
+  width: 650px;
+  height: 450px;
+}
+
+.modal {
+  width: 650px;
+  height: 800px;
+  background-color: #fff;
+  z-index: 234;
+}
+
+.close {
+  color: gray;
+  text-align: right;
+  font-size: 22px;
+  padding-right: 25px;
+}
+.close:after {
+  display: inline-block;
+  content: "\00d7";
+  font-size: 50px;
+}
+.avatar-footer {
+  margin-top: 10px;
+  display: flex;
+  font-size: 14px;
+  padding: 15px;
+}
+.avatar-footer p {
+  margin-left: 20px;
+}
+.avatar-footer img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
 }
